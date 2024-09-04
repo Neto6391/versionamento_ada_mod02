@@ -84,6 +84,7 @@ jobs:
       - name: Run tests
         run: |
           poetry install --no-interaction
+          poetry run alembic upgrade head
           poetry run pytest .
 
   deploy:
