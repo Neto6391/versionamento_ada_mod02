@@ -8,3 +8,4 @@ exclude =
     .git,
     __pycache__,
     migrations,
+    alembic/versions,
