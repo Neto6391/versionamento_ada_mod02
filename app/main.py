@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.v1.endpoints import users
+from app.api.v1.endpoints import users, auth
 from dotenv import load_dotenv
 import os
 import uvicorn
@@ -17,7 +17,7 @@ app = FastAPI(
     },
 )
 app.include_router(users.router, prefix="/users", tags=["users"])
-
+app.include_router(auth.router, prefix="/login", tags=["login"])
 
 if __name__ == "__main__":
     host = os.getenv("HOST", "127.0.0.1")
