@@ -16,11 +16,11 @@ load_dotenv(dotenv_path='.env.test')
 @pytest.fixture(scope='session')
 def test_db():
     engine = create_engine(os.environ['DATABASE_URL'], connect_args={"check_same_thread": False})
-    
+
     Base.metadata.create_all(bind=engine)
 
     TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-    
+
     yield TestingSessionLocal  # Retorna a função que cria sessões
 
     Base.metadata.drop_all(bind=engine)
@@ -31,4 +31,5 @@ def db_session(test_db):
     db.query(User).delete()
     db.commit()
     yield db
+
     db.close()

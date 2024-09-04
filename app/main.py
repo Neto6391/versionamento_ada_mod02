@@ -1,14 +1,14 @@
 from fastapi import FastAPI
 from app.api.v1.endpoints import users
-from app.db.session import SessionLocal, engine
-from app.db.base_class import Base
 from dotenv import load_dotenv
+import os
+import uvicorn
 
 load_dotenv(dotenv_path='.env')
 
 app = FastAPI(
     title="PetPlan API",
-     description="API PetPlan StartUp",
+    description="API PetPlan StartUp",
     version="1.0.0",
     contact={
         "name": "Neto6391",
