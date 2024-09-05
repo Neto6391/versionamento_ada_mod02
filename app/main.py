@@ -17,7 +17,7 @@ app = FastAPI(
     },
 )
 app.include_router(users.router, prefix="/users", tags=["users"])
-app.include_router(auth.router, prefix="/login", tags=["login"])
+app.include_router(auth.router, prefix="/auth", tags=["auth"])
 
 if __name__ == "__main__":
     host = os.getenv("HOST", "127.0.0.1")
