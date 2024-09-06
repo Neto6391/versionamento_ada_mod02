@@ -4,7 +4,6 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import jwt, JWTError
 from app.core.config import settings
 from app.schemas.auth import TokenData
-from app.services.user_service import get_user_by_email
 
 
 from datetime import datetime, timedelta, timezone
@@ -33,7 +32,7 @@ def decode_token(token: str):
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
         email: str = payload.get("sub")
-        scopes: list[str] = payload.get("scopes", [])
+        scopes: list[str] = payload.get("scopes")
 
         if email is None:
             raise credentials_exception
@@ -44,6 +43,8 @@ def decode_token(token: str):
 
 
 def verify_token(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+    from app.services.user_service import get_user_by_email
+
     token_data: TokenData = decode_token(token)
 
     user = get_user_by_email(db, email=token_data.email)
