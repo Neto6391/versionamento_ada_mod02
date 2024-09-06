@@ -1,10 +1,5 @@
-from fastapi.testclient import TestClient
-from app.main import app
-
-client = TestClient(app)
-
-def test_login(db_session):
-    client.post("/users/", json={"email": "user@example.com", "password": "password"})
+def test_login(client):
+    client.post("/users/client/", json={"email": "user@example.com", "password": "password"})
     response = client.post("/auth", json={"email": "user@example.com", "password": "password"})
     assert response.status_code == 200
     assert "access_token" in response.json()
@@ -12,8 +7,8 @@ def test_login(db_session):
     response = client.post("/auth/", json={"email": "user@test.com", "password": "password"})
     assert response.status_code == 401
 
-def test_logout(db_session):
-    client.post("/users/", json={"email": "user@example.com", "password": "password"})
+def test_logout(client):
+    client.post("/users/client/", json={"email": "user@example.com", "password": "password"})
     response = client.post("/auth", json={"email": "user@example.com", "password": "password"})
     auth_data = response.json()
     valid_token = auth_data.get("access_token")
