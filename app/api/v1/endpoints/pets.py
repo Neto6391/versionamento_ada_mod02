@@ -4,7 +4,7 @@ from app.db.models.user import User
 from app.db.session import get_db
 from app.schemas.pets import PetCreate, PetResponse, PetUpdate
 from app.services.auth_service import verify_token
-from app.services.pets import PetService
+from app.services.pets_service import PetService
 
 router = APIRouter()
 
