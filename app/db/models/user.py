@@ -14,3 +14,4 @@ class User(Base):
     is_active = Column(Boolean, default=True)
 
     groups = relationship("Group", secondary=user_group, back_populates="users")
+    pets = relationship("Pet", back_populates="owner")
