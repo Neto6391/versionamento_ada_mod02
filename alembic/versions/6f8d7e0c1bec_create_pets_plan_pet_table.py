@@ -19,8 +19,13 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
-    pass
+    op.create_table(
+        'pet_plan_pet',
+        sa.Column('id', sa.String, primary_key=True),
+        sa.Column('pet_id', sa.String, sa.ForeignKey('pets.id')),
+        sa.Column('plan_id', sa.String, sa.ForeignKey('pets_plan.id'))
+    )
 
 
 def downgrade() -> None:
-    pass
+    op.drop_table('pet_plan_pet')
