@@ -49,6 +49,14 @@ def token_with_role_admin(client, populate_db):
     token = auth_data.get("access_token")
     return token
 
+@pytest.fixture(scope='function')
+def token_with_role_client(client, populate_db):
+    client.post("/users/client", json={"email": "client@example.com", "password": "password"})
+    response = client.post("/auth", json={"email": "client@example.com", "password": "password"})
+    auth_data = response.json()
+    token = auth_data.get("access_token")
+    return token
+
 @pytest.fixture(scope='function', autouse=True)
 def populate_db(db_session):
     policies = [
