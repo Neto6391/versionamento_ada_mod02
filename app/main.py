@@ -25,7 +25,6 @@ app.include_router(pets.router, prefix="/pets", tags=["pets"])
 app.include_router(pets_plan.router, prefix="/pets_plan", tags=["pets_plan"])
 
 
-
 if __name__ == "__main__":
     host = os.getenv("HOST", "127.0.0.1")
     port = int(os.getenv("PORT"))
