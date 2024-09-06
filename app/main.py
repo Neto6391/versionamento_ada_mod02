@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.api.v1.endpoints import users, auth, roles, groups
+from app.api.v1.endpoints import users, auth, roles, groups, pets
 from dotenv import load_dotenv
 import os
 import uvicorn
@@ -20,6 +20,7 @@ app.include_router(users.router, prefix="/users", tags=["users"])
 app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(roles.router, prefix="/roles", tags=["roles"])
 app.include_router(groups.router, prefix="/groups", tags=["groups"])
+app.include_router(pets.router, prefix="/pets", tags=["pets"])
 
 if __name__ == "__main__":
     host = os.getenv("HOST", "127.0.0.1")
