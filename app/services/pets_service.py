@@ -23,8 +23,14 @@ class PetService:
     def update_pet(db: Session, pet_id: str, pet_update: PetUpdate, user_id: str):
         pet = PetService.get_pet(db, pet_id, user_id)
         if pet:
-            for key, value in pet_update.model_dump().items():
-                setattr(pet, key, value)
+            if pet_update.model_dump().get("name") is not None:
+                pet.name = pet_update.name
+            if pet_update.model_dump().get("age") is not None:
+                pet.age = pet_update.age
+            if pet_update.model_dump().get("weight") is not None:
+                pet.weight = pet_update.weight
+            if pet_update.model_dump().get("species") is not None:
+                pet.species = pet_update.species
             db.commit()
             db.refresh(pet)
         return pet
