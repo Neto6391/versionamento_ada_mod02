@@ -4,6 +4,11 @@
 
 Este projeto é uma aplicação desenvolvida em Python 3.10, projetada para treinar o desenvolvimento e a implementação de uma pipeline de deploy automatizada. A pipeline é acionada por pushes nas branches "develop" e "main", atualizando uma instância EC2 na AWS com as mudanças mais recentes.
 
+## Arquitetura
+
+![ec_app_0](docs/assets/arquitetura-aws.jpg.png)
+
+
 ## Resultado Final
 
 - Algumas funcionalidades:
