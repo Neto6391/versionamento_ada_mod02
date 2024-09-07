@@ -108,7 +108,6 @@ jobs:
           cd versionamento_ada_mod02
           git checkout develop
 
-          # Garantir que o ambiente Python correto está sendo usado
           poetry env use python3.10
           
           poetry install --no-interaction --no-root
