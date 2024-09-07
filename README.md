@@ -4,6 +4,19 @@
 
 Este projeto é uma aplicação desenvolvida em Python 3.10, projetada para treinar o desenvolvimento e a implementação de uma pipeline de deploy automatizada. A pipeline é acionada por pushes nas branches "develop" e "main", atualizando uma instância EC2 na AWS com as mudanças mais recentes.
 
+## Resultado Final
+
+- Algumas funcionalidades:
+
+![ec_app_1](docs/assets/register_pet_user.png)
+
+![ec_app_2](docs/assets/login_user.png)
+
+![ec_app_3](docs/assets/register_pet_user.png)
+
+![ec_app_4](docs/assets/logout_user.png)
+
+
 ## Funcionalidades da aplicação API
 
 - **Cadastro de Usuários**: Suporte para dois tipos de usuários - "cliente" e "admin".
