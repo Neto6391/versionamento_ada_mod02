@@ -107,8 +107,11 @@ jobs:
           git clone https://github.com/Neto6391/versionamento_ada_mod02.git
 
           cd versionamento_ada_mod02
+          git checkout develop
+          git pull origin develop
 
           poetry env use python3.10
+          poetry run pip install uvicorn
 
           poetry install --no-interaction --no-root
           poetry run alembic upgrade head
@@ -117,3 +120,4 @@ jobs:
 
           poetry run nohup gunicorn app.main:app -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 > gunicorn.log 2>&1 &
         EOF
+        echo "Deploy finished"
