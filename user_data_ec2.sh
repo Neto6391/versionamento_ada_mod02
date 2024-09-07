@@ -18,7 +18,7 @@ sudo yum update -y >> "$log_file" 2>&1
 
 
 log "Instalando dependências..."
-sudo yum -y install gcc openssl-devel bzip2-devel libffi-devel sqlite-devel zlib-devel >> "$log_file" 2>&1
+sudo yum -y install gcc openssl-devel bzip2-devel libffi-devel sqlite-devel zlib-devel git >> "$log_file" 2>&1
 
 install_python() {
   if ! command -v python3.10 &> /dev/null
