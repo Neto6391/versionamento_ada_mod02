@@ -1,16 +1,18 @@
-name: Main Pipeline
+name: Develop Pipeline
 
 on:
   push:
     branches:
-      - main
+      - develop
   pull_request:
     branches:
-      - main
-
+      - develop
+    paths-ignore:
+        - 'docs/**'
+        - 'README.md'
 env:
   PYTHON_VERSION: '3.10'
- 
+
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -85,13 +87,40 @@ jobs:
       - name: Run tests
         run: |
           poetry install --no-interaction
+          poetry run alembic upgrade head
           poetry run pytest .
 
   deploy:
     runs-on: ubuntu-latest
     needs: [lint, test]
+    
     steps:
     - name: Deploy
       if: success()
       run: |
-        echo "Deploying the application..."
+        mkdir -p ~/.ssh/
+        echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ec2-key.pem
+        chmod 600 ~/.ssh/ec2-key.pem
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/ec2-key.pem ec2-user@${{ vars.EC2_PUBLIC_IP }} << 'EOF'
+          cd /home/ec2-user/my_fastapi_app
+
+          if [ -d "versionamento_ada_mod02" ]; then
+            rm -rf versionamento_ada_mod02
+          fi
+          git clone https://github.com/Neto6391/versionamento_ada_mod02.git
+
+          cd versionamento_ada_mod02
+          git checkout develop
+          git pull origin develop
+
+          poetry env use python3.10
+          poetry run pip install uvicorn
+
+          poetry install --no-interaction --no-root
+          poetry run alembic upgrade head
+
+          pkill gunicorn || echo "Nenhum processo Gunicorn em execução."
+
+          poetry run nohup gunicorn app.main:app -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 > gunicorn.log 2>&1 &
+        EOF
+        echo "Deploy finished"
