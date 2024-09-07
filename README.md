@@ -134,7 +134,7 @@ Este projeto está sob a licença do MIT. Consulte a [LICENSE](LICENSE) para obt
 
 ## Como contribuir
 
-1. Siga as diretivas do [CONTRIBUTING.md](docs/CONTRIBUTING.md)
+1. Siga as diretivas do [CONTRIBUTING.md](docs/CONTRIBUTING.md) foi incluso instruções da execução do script **user_data_ec2** nas diretivas de contribuição.
 
 ## Autores
 
