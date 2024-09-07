@@ -26,6 +26,7 @@ def upgrade() -> None:
         sa.Column('age', sa.INTEGER(), nullable=False),
         sa.Column('weight', sa.Float(), nullable=False),
         sa.Column('species', sa.String(), nullable=False),
+        sa.Column('is_vaccinated', sa.Boolean(), nullable=True),
         sa.Column('owner_id', sa.String(), nullable=False),
         sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
         sa.PrimaryKeyConstraint('id')

@@ -1,5 +1,5 @@
 from uuid import uuid4
-from sqlalchemy import Column, String, ForeignKey, Float, INTEGER
+from sqlalchemy import Column, String, ForeignKey, Float, INTEGER, Boolean
 from sqlalchemy.orm import relationship
 from app.db.base_class import Base
 from app.db.models.associations import pet_plan_pet
@@ -13,6 +13,7 @@ class Pet(Base):
     age = Column(INTEGER, index=True, nullable=False)
     weight = Column(Float, index=True, nullable=False)
     species = Column(String, nullable=False)
+    is_vaccinated = Column(Boolean, default=True)
     owner_id = Column(String, ForeignKey("users.id"), nullable=False)
 
     owner = relationship("User", back_populates="pets")
