@@ -104,11 +104,12 @@ jobs:
             rm -rf versionamento_ada_mod02
           fi
           git clone https://github.com/Neto6391/versionamento_ada_mod02.git
-          
+          touch gunicorn.log
+
           cd versionamento_ada_mod02
 
           poetry env use python3.10
-          
+
           poetry install --no-interaction --no-root
           poetry run alembic upgrade head
 
