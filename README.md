@@ -4,6 +4,24 @@
 
 Este projeto é uma aplicação desenvolvida em Python 3.10, projetada para treinar o desenvolvimento e a implementação de uma pipeline de deploy automatizada. A pipeline é acionada por pushes nas branches "develop" e "main", atualizando uma instância EC2 na AWS com as mudanças mais recentes.
 
+## Arquitetura
+
+![ec_app_1](docs/assets/arquitetura_aws.jpg)
+
+
+## Resultado Final
+
+- Algumas funcionalidades:
+
+![ec_app_2](docs/assets/register_pet_user.png)
+
+![ec_app_3](docs/assets/login_user.png)
+
+![ec_app_4](docs/assets/register_pet_user.png)
+
+![ec_app_5](docs/assets/logout_user.png)
+
+
 ## Funcionalidades da aplicação API
 
 - **Cadastro de Usuários**: Suporte para dois tipos de usuários - "cliente" e "admin".
@@ -134,7 +152,7 @@ Este projeto está sob a licença do MIT. Consulte a [LICENSE](LICENSE) para obt
 
 ## Como contribuir
 
-1. Siga as diretivas do [CONTRIBUTING.md](docs/CONTRIBUTING.md)
+1. Siga as diretivas do [CONTRIBUTING.md](docs/CONTRIBUTING.md) foi incluso instruções da execução do script **user_data_ec2** nas diretivas de contribuição.
 
 ## Autores
 
