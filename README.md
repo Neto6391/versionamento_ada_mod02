@@ -128,6 +128,13 @@ Este projeto é uma aplicação desenvolvida em Python 3.10, projetada para trei
           - 'docs/**'
           - 'README.md'
     ```
+## Licença
+
+Este projeto está sob a licença do MIT. Consulte a [LICENSE](LICENSE) para obter mais informações.
+
+## Como contribuir
+
+1. Siga as diretivas do [CONTRIBUTING.md](docs/CONTRIBUTING.md)
 
 ## Autores
 
