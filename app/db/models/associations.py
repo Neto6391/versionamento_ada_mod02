@@ -11,7 +11,7 @@ user_group = Table(
 )
 
 group_role = Table(
-    "group_role", Base.metadata,
+    "group_roles", Base.metadata,
     Column("group_id", String, ForeignKey("groups.id"), primary_key=True),
     Column("role_id", String, ForeignKey("roles.id"), primary_key=True)
 )
