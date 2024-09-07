@@ -101,6 +101,8 @@ jobs:
           cd /home/ec2-user/my_fastapi_app
           rm -rf versionamento_ada_mod02
           git clone https://github.com/Neto6391/versionamento_ada_mod02.git
+          chmod -R 755 versionamento_ada_mod02
+          chown -R ec2-user:ec2-user versionamento_ada_mod02
           cd versionamento_ada_mod02
           git pull origin main
           poetry install --no-interaction --no-root
