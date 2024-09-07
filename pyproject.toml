@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "test-pipeline"
+name = "versionamento_ada_mod02"
 version = "0.1.0"
 description = ""
 authors = ["Neto6391 <neto6391@gmail.com>"]
