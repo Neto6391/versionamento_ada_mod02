@@ -110,8 +110,7 @@ jobs:
           git clone https://github.com/Neto6391/versionamento_ada_mod02.git
 
           cd versionamento_ada_mod02
-          git checkout develop
-          git pull origin develop
+          git pull origin main
 
           poetry env use python3.10
           poetry run pip install uvicorn
