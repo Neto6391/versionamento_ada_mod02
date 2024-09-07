@@ -31,6 +31,8 @@ class PetService:
                 pet.weight = pet_update.weight
             if pet_update.model_dump().get("species") is not None:
                 pet.species = pet_update.species
+            if pet_update.model_dump().get("is_vaccinated") is not None:
+                pet.is_vaccinated = pet_update.is_vaccinated
             db.commit()
             db.refresh(pet)
         return pet
