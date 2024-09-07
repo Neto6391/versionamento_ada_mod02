@@ -105,5 +105,5 @@ jobs:
           git pull origin main
           poetry install --no-interaction
           poetry run alembic upgrade head
-          poetry run uvicorn app.main:app --reload
+          poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000
         EOF
