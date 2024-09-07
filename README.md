@@ -6,7 +6,7 @@ Este projeto é uma aplicação desenvolvida em Python 3.10, projetada para trei
 
 ## Arquitetura
 
-![ec_app_1](docs/assets/arquitetura_aws.jpg.png)
+![ec_app_1](docs/assets/arquitetura_aws.jpg)
 
 
 ## Resultado Final
