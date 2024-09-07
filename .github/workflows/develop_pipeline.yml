@@ -101,8 +101,8 @@ jobs:
           cd /home/ec2-user/my_fastapi_app
 
           # Garantir permissões corretas no diretório principal
-          chmod -R 755 /home/ec2-user/my_fastapi_app
-          chown -R ec2-user:ec2-user /home/ec2-user/my_fastapi_app
+          sudo chmod -R 755 /home/ec2-user/my_fastapi_app
+          sudo chown -R ec2-user:ec2-user /home/ec2-user/my_fastapi_app
 
           # Atualizar o repositório
           if [ -d "versionamento_ada_mod02" ]; then
