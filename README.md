@@ -4,7 +4,7 @@
 
 Este projeto é uma aplicação desenvolvida em Python 3.10, projetada para treinar o desenvolvimento e a implementação de uma pipeline de deploy automatizada. A pipeline é acionada por pushes nas branches "develop" e "main", atualizando uma instância EC2 na AWS com as mudanças mais recentes.
 
-## Funcionalidades do Aplicativo
+## Funcionalidades da aplicação API
 
 - **Cadastro de Usuários**: Suporte para dois tipos de usuários - "cliente" e "admin".
 - **Autenticação**: Logar e deslogar usuários.
@@ -79,7 +79,7 @@ Este projeto é uma aplicação desenvolvida em Python 3.10, projetada para trei
 6. Acesse a API no navegador ou cliente de testes de API:
 
     ```bash
-    http://localhost:8000/api
+    http://localhost:8000/
     ```
 
 ## Implantação na AWS Usando GitHub Actions
