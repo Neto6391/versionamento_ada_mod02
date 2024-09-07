@@ -6,20 +6,20 @@ Este projeto é uma aplicação desenvolvida em Python 3.10, projetada para trei
 
 ## Arquitetura
 
-![ec_app_0](docs/assets/arquitetura-aws.jpg.png)
+![ec_app_1](docs/assets/arquitetura_aws.jpg.png)
 
 
 ## Resultado Final
 
 - Algumas funcionalidades:
 
-![ec_app_1](docs/assets/register_pet_user.png)
+![ec_app_2](docs/assets/register_pet_user.png)
 
-![ec_app_2](docs/assets/login_user.png)
+![ec_app_3](docs/assets/login_user.png)
 
-![ec_app_3](docs/assets/register_pet_user.png)
+![ec_app_4](docs/assets/register_pet_user.png)
 
-![ec_app_4](docs/assets/logout_user.png)
+![ec_app_5](docs/assets/logout_user.png)
 
 
 ## Funcionalidades da aplicação API
