@@ -100,11 +100,9 @@ jobs:
         ssh -o StrictHostKeyChecking=no -i ~/.ssh/ec2-key.pem ec2-user@${{ vars.EC2_PUBLIC_IP }} << 'EOF'
           cd /home/ec2-user/my_fastapi_app
 
-          # Garantir permissões corretas no diretório principal
           sudo chmod -R 755 /home/ec2-user/my_fastapi_app
           sudo chown -R ec2-user:ec2-user /home/ec2-user/my_fastapi_app
 
-          # Atualizar o repositório
           if [ -d "versionamento_ada_mod02" ]; then
             rm -rf versionamento_ada_mod02
           fi
@@ -116,10 +114,10 @@ jobs:
           # Garantir que o ambiente Python correto está sendo usado
           poetry env use python3.10
           
-          # Instalar dependências
           poetry install --no-interaction --no-root
           poetry run alembic upgrade head
 
-          # Rodar o servidor
-          poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000
+          pkill gunicorn || echo "Nenhum processo Gunicorn em execução."
+
+          poetry run nohup gunicorn app.main:app -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:8000 > gunicorn.log 2>&1 &
         EOF
