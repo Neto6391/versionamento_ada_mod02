@@ -2,7 +2,7 @@ def test_create_pet(client, token_with_role_client, clear_db):
     test_user_token = token_with_role_client
     response = client.post(
         "/pets/",
-        json={"name": "Rex", "age": 2, "weight": 1.2, "species": "Dog"},
+        json={"name": "Rex", "age": 2, "weight": 1.2, "species": "Dog", "is_vaccinated": True},
         headers={"Authorization": f"Bearer {test_user_token}"}
     )
     assert response.status_code == 200
@@ -12,7 +12,7 @@ def test_get_pet(client, token_with_role_client, clear_db):
     test_user_token = token_with_role_client
     test_pet_create = client.post(
         "/pets/",
-        json={"name": "Rex", "age": 2, "weight": 1.2, "species": "Dog"},
+        json={"name": "Rex", "age": 2, "weight": 1.2, "species": "Dog", "is_vaccinated": True},
         headers={"Authorization": f"Bearer {test_user_token}"}
     )
 
@@ -27,7 +27,7 @@ def test_update_pet(client, token_with_role_client, clear_db,):
 
     test_pet_create = response = client.post(
         "/pets/",
-        json={"name": "Rex", "species": "Dog", "age": 2, "weight": 1.2},
+        json={"name": "Rex", "species": "Dog", "age": 2, "weight": 1.2, "is_vaccinated": True},
         headers={"Authorization": f"Bearer {test_user_token}"}
     )
     test_pet_create = test_pet_create.json()["id"]
@@ -43,7 +43,7 @@ def test_delete_pet(client, token_with_role_client, clear_db):
     test_user_token = token_with_role_client
     test_pet = response = client.post(
         "/pets/",
-        json={"name": "Rex", "species": "Dog", "age": 2, "weight": 1.2},
+        json={"name": "Rex", "species": "Dog", "age": 2, "weight": 1.2, "is_vaccinated": True},
         headers={"Authorization": f"Bearer {test_user_token}"}
     )
     test_pet = test_pet.json()["id"]

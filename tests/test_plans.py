@@ -4,7 +4,7 @@ def test_sign_pet_to_plan_valid(client, token_with_role_client, token_with_role_
 
     pet1 = client.post(
         "/pets/",
-        json={"name": "Rex", "age": 2, "weight": 1.2, "species": "Dog"},
+        json={"name": "Rex", "age": 2, "weight": 1.2, "species": "Dog", "is_vaccinated": True},
         headers={"Authorization": f"Bearer {client_token}"}
     )
 
@@ -12,7 +12,7 @@ def test_sign_pet_to_plan_valid(client, token_with_role_client, token_with_role_
 
     pet2 = client.post(
         "/pets/",
-        json={"name": "Nina", "age": 2, "weight": 0.600, "species": "Cat"},
+        json={"name": "Nina", "age": 2, "weight": 0.600, "species": "Cat", "is_vaccinated": True},
         headers={"Authorization": f"Bearer {client_token}"}
     )
 
@@ -51,7 +51,7 @@ def test_sign_pet_to_plan_max_pets_exceeded(client, token_with_role_client, toke
 
     pet1 = client.post(
         "/pets/",
-        json={"name": "Rex", "age": 2, "weight": 1.2, "species": "Dog"},
+        json={"name": "Rex", "age": 2, "weight": 1.2, "species": "Dog", "is_vaccinated": True},
         headers={"Authorization": f"Bearer {client_token}"}
     )
 
@@ -59,7 +59,7 @@ def test_sign_pet_to_plan_max_pets_exceeded(client, token_with_role_client, toke
 
     pet2 = client.post(
         "/pets/",
-        json={"name": "Nina", "age": 2, "weight": 0.600, "species": "Cat"},
+        json={"name": "Nina", "age": 2, "weight": 0.600, "species": "Cat", "is_vaccinated": True},
         headers={"Authorization": f"Bearer {client_token}"}
     )
 
@@ -67,7 +67,7 @@ def test_sign_pet_to_plan_max_pets_exceeded(client, token_with_role_client, toke
 
     pet3 = client.post(
         "/pets/",
-        json={"name": "Nina", "age": 2, "weight": 0.600, "species": "Cat"},
+        json={"name": "Maria", "age": 2, "weight": 0.600, "species": "Cat", "is_vaccinated": False},
         headers={"Authorization": f"Bearer {client_token}"}
     )
 
