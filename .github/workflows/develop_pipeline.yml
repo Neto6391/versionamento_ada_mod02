@@ -103,7 +103,7 @@ jobs:
           git clone https://github.com/Neto6391/versionamento_ada_mod02.git
           cd versionamento_ada_mod02
           git pull origin main
-          poetry install --no-interaction
+          poetry install --no-interaction --no-root
           poetry run alembic upgrade head
           poetry run uvicorn app.main:app --host 0.0.0.0 --port 8000
         EOF
