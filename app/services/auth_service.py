@@ -4,6 +4,7 @@ from fastapi.security import OAuth2PasswordBearer
 from jose import jwt, JWTError
 from app.core.config import settings
 from app.schemas.auth import TokenData
+from app.services.blacklist_token_service import BlacklistTokenService
 
 
 from datetime import datetime, timedelta, timezone
@@ -45,14 +46,23 @@ def decode_token(token: str):
 def verify_token(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
     from app.services.user_service import get_user_by_email
 
-    token_data: TokenData = decode_token(token)
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    blacklistTokenService = BlacklistTokenService(db)
+    if not blacklistTokenService.is_token_blacklisted(token):
+        token_data: TokenData = decode_token(token)
 
-    user = get_user_by_email(db, email=token_data.email)
-    if user is None:
-        credentials_exception = HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Could not validate credentials",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-        raise credentials_exception
-    return user
+        user = get_user_by_email(db, email=token_data.email)
+        if user is None:
+            raise credentials_exception
+        return user
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="User must login in",
+        headers={"WWW-Authenticate": "Bearer"},
+    )
+    raise credentials_exception
+
