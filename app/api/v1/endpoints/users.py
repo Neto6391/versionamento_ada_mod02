@@ -18,7 +18,6 @@ def register_user_client(user_in: UserCreate, db: Session = Depends(get_db)):
 
 @router.post("/admin", response_model=UserResponse, summary="Register user admin", response_description="Service to register user admin in sign in")
 def register_user_admin(user_in: UserCreate, db: Session = Depends(get_db)):
-    # breakpoint()
     user = create_user(db=db, user_in=user_in, is_admin=True)
     if not user:
         raise HTTPException(
