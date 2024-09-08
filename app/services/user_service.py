@@ -51,7 +51,7 @@ def get_user_permissions(user: User) -> List[str]:
     permissions = set()
     for group in user.groups:
         for role in group.roles:
-            role_base = '_'.join(role.name.split('_')[:-1])  # Mantém a parte base do nome até antes da ação
+            role_base = '_'.join(role.name.split('_')[:-1])
 
             for policy in role.policies:
                 if policy.can_create:
