@@ -46,17 +46,20 @@ def check_permission(required_role: str):
         )
     return wrapper
 
+
 def get_user_permissions(user: User) -> List[str]:
     permissions = set()
     for group in user.groups:
         for role in group.roles:
+            role_base = '_'.join(role.name.split('_')[:-1])
+
             for policy in role.policies:
                 if policy.can_create:
-                    permissions.add(f"{role.name.split('_')[0]}_create")
+                    permissions.add(f"{role_base}_create")
                 if policy.can_read:
-                    permissions.add(f"{role.name.split('_')[0]}_read")
+                    permissions.add(f"{role_base}_read")
                 if policy.can_update:
-                    permissions.add(f"{role.name.split('_')[0]}_update")
+                    permissions.add(f"{role_base}_update")
                 if policy.can_delete:
-                    permissions.add(f"{role.name.split('_')[0]}_delete")
+                    permissions.add(f"{role_base}_delete")
     return list(permissions)
