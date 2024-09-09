@@ -24,21 +24,32 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
     return encoded_jwt
 
 
-def decode_token(token: str):
+def decode_token(token: str) -> TokenData:
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
         headers={"WWW-Authenticate": "Bearer"},
     )
+
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
+
         email: str = payload.get("sub")
         scopes: list[str] = payload.get("scopes")
+        exp: int = payload.get("exp")
 
         if email is None:
             raise credentials_exception
-        token_data = TokenData(email=email, scopes=scopes)
-        return token_data
+        exp_datetime = datetime.fromtimestamp(exp, tz=timezone.utc)
+        if datetime.now(timezone.utc) > exp_datetime:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Token has expired",
+                headers={"WWW-Authenticate": "Bearer"},
+            )
+
+        return TokenData(email=email, scopes=scopes)
+
     except JWTError:
         raise credentials_exception
 
